@@ -47,6 +47,12 @@ mod tests{
         assert_eq!(find_nemo(&sentence), "I can't find Nemo :(");
     }
 
+    #[test]
+    fn test_multiple_nemo_in_sentence() {
+        let sentence = String::from("Nemo finding Nemo !");
+        assert_eq!(find_nemo(&sentence), "I found Nemo at 1!");
+    }
+
 }
 
 
