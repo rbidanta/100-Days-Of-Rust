@@ -1,18 +1,11 @@
 fn count_skewers(skewers: &[&str]) -> Vec<u32> {
-    let mut veg: u32 = 0;
-    let mut non_veg: u32 = 0;
-
+    let mut counts = [0u32; 2];
+    
     for skewer in skewers.iter() {
-        if skewer.contains("x") {
-            non_veg+=1;
-        }else{
-            veg+=1;
-        }
+        counts[skewer.contains("x") as usize] += 1;
     }
 
-    
-
-    vec![veg, non_veg]
+    counts.to_vec()
 }
 
 fn main() {
