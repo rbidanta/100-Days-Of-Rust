@@ -1,13 +1,12 @@
 
-fn next_prime(mut num: u32) -> u32 {
-
+fn next_prime(mut num: i32) -> i32 {
     while !is_prime(num) {
         num  += 1;
     }
     num
 }
 
-fn is_prime(num: u32) -> bool {
+fn is_prime(num: i32) -> bool {
 
     if num <= 1 {
         return false;
@@ -35,7 +34,7 @@ fn is_prime(num: u32) -> bool {
 }
 
 fn main() {
-    let num = 23u32;
+    let num = 23;
     println!("{}", next_prime(num));
 }
 
@@ -78,6 +77,16 @@ mod tests{
     #[test]
     fn test_for_11() {
         assert_eq!(next_prime(11), 11);
+    }
+
+    #[test]
+    fn test_for_large_number() {
+        assert_eq!(next_prime(98987), 98993);
+    }
+
+    #[test]
+    fn test_for_negative_number() {
+        assert_eq!(next_prime(-23), 2);
     }
 
 }
