@@ -1,0 +1,11 @@
+[package]
+name = "ages_to_days"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+
+[[test]]
+name = "unit_tests"
+path = "src/tests.rs"
