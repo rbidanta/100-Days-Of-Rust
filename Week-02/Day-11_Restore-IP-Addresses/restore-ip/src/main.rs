@@ -24,19 +24,16 @@ fn generate_all_ips(input: &str, sections: usize, temp: &mut Vec<String>, res: &
         return;
     }
 
-    let mut n = 3;
-    if input.len() < 3 {
-        n = input.len();
-    }
-
-    for i in 1..=n {
-        let section = &input[0..i];
-        if !validate_ip_section(section) {
-            return;
+    for i in 1..=3 {
+        if input.len() >= i  {
+            let section = &input[0..i];
+            if !validate_ip_section(section) {
+                return;
+            }
+            temp.push(section.to_string());
+            generate_all_ips(&input[i..], sections-1, temp, res);
+            temp.pop();
         }
-        temp.push(section.to_string());
-        generate_all_ips(&input[i..], sections-1, temp, res);
-        temp.pop();
     }
 }
 
