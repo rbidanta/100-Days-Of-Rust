@@ -6,18 +6,23 @@ fn is_mountain(input: &[i32]) -> bool {
     let mut peak: usize = 0;
     for i in 1..input.len() {
 
+        // Keep tack of peak
         if input[i] > input[i-1] {
             peak = i;
+            // If there are multiple peaks then its not a strict mountain
+            // So return false
+            if !inc {
+                return false
+            }
         }
 
-        if !inc && input[i] > input[i-1]{
-            return false
-        }
+        // Switch the slope direction when descending from peak
         if input[i] < input[i-1] {
             inc = false;
         }
     }
 
+    // Edge cases as mountain cannot be on the border
     if peak == 0 || peak == input.len() - 1 {
         return false;
     }
@@ -31,22 +36,24 @@ fn is_valley(input: &[i32]) -> bool {
     let mut dec = true;
     let mut trough = 0;
     for i in 1..input.len() {
+        // Keep tack of trough
 
         if input[i] < input[i-1] {
             trough = i;
+            // If there are multiple troughs then its not a strict valley
+            // So return false
+            if !dec {
+                return false
+            }
         }
 
-        if !dec && input[i] < input[i-1]{
-            return false
-        }
+        // Switch the slope direction when ascending from valley
         if input[i] > input[i-1] {
-            if dec {
-                trough = i - 1;
-            }
             dec = false;
         }
     }
 
+    // Edge cases as valley cannot be on the border
     if trough == 0 || trough == input.len() - 1 {
         return false;
     }
