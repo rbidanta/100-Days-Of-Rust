@@ -37,12 +37,10 @@ fn generate_all_ips(input: &str, sections: usize, temp: &mut Vec<String>, res: &
     }
 }
 
-fn solve(input: &str) -> Vec<String> {
-
+fn solve(input: &str) -> Vec<String> { 
     let mut res = vec![];
     let mut temp: Vec<String> = vec![];
     generate_all_ips(input, 4, &mut temp, &mut res);
-
     res
 }
 
