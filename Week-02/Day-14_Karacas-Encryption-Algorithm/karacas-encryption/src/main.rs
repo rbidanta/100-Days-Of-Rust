@@ -1,11 +1,7 @@
 use std::collections::HashMap;
 
 fn is_vowel(ch: &char) -> bool {
-
-    if ['a', 'e', 'i', 'o', 'u'].contains(ch) {
-        return true;
-    }
-    false
+    "aeiou".contains(*ch)
 }
 
 fn encrypt(input: &str) -> String {
@@ -18,33 +14,27 @@ fn encrypt(input: &str) -> String {
         ('u', '3'),
     ]);
 
-    let mut res: Vec<char> = vec![];
+    let mut res = "".to_string();
 
-    let chars: Vec<char> = input.chars().collect();
+    let chars = input.chars().rev();
 
-    let mut it = input.len();
-
-    while it > 0  {
-        let ch = chars.get(it-1).unwrap();
+    for ch in chars {
         if is_vowel(&ch) {
             res.push(*vowels.get(&ch).unwrap());
-        } else {
-            res.push(*ch);
+        }else{
+            res.push(ch);
         }
-        it -= 1;
-    } 
+    }
 
-    println!("{:?}", res);
-
-    let chars_as_string: Vec<String> = res.iter().map(|ch| ch.to_string()).collect();
-
-    chars_as_string.join("") + "aca"
+    res + "aca"
 
 }
 
 
 fn main() {
-    let data = "Hello, world!";
+    let data = "in a quiet little town nestled between rolling hills and lush green forests, life moved at a gentle pace. the sun rose each morning, casting a warm golden glow over the quaint houses and cobblestone streets. children played in the park, their laughter echoing through the air as they chased butterflies and climbed trees. nearby, an old man sat on a bench, feeding the birds with crumbs from his lunch. he often shared stories of his youth with anyone who would listen, tales of adventure and mischief that captivated the hearts of those around him.
+as the seasons changed, so did the town. spring brought vibrant flowers that painted the landscape in hues of pink and yellow, while summer filled the days with sunshine and warmth. autumn transformed the trees into a tapestry of red and orange, and winter blanketed everything in soft white snow. each season held its own charm, drawing visitors from afar who sought to experience the magic of this idyllic place.
+the townspeople were friendly and welcoming, always ready to lend a helping hand or share a smile. they gathered for festivals and celebrations, where music filled the air and delicious food was shared among friends. it was a community built on love, kindness, and the simple joys of life.";
     println!("Result: {}",encrypt(data));
     println!("Original Data: {}", data);
 }
