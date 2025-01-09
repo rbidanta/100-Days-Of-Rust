@@ -2,22 +2,18 @@
 
 fn freed_prisoners(cells: &[i32]) -> i32 {
 
-    if cells[0] == 0 {
+    if cells.is_empty() || cells[0] == 0 {
         return 0;
     }
 
-    let mut freed_count = 0;
+    cells.iter().fold(0, |freed_count, &cell| {
 
-    for cell in cells {
-        if freed_count%2 == 0 {
-            if *cell == 1 {
-                freed_count+=1;
-            }
-        } else if *cell == 0 {
-            freed_count+=1;
+        if (freed_count % 2 == 0 && cell == 1) || (freed_count % 2 == 1 && cell == 0) {
+            freed_count + 1
+        }else{
+            freed_count
         }
-    }
-    freed_count
+    })
 }
 
 
